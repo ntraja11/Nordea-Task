@@ -7,10 +7,7 @@
     <script src="js/angular.js"></script>    
     <script src="js/searchScript.js"></script>       
   </head>
-
   <body ng-controller="SearchCtrl">
-
-
   	<form>
   		Please enter a serch keyword : <input type="text" ng-change="setConfig()" ng-model="searchKey">
   		<br/>
@@ -21,21 +18,11 @@
 		<div ng-show="(venueList.length>10)">  		
 			<input type="radio" ng-model="venueListLimit" ng-show="(venueList.length>10)" value="10">10		
 		</div>
-
-		<!--div ng-show="(venueList.length>0)">
-			<input type="radio" ng-model="venueListLimit" ng-value="true" value="15">{{venueList.length + " Max"}}		
-		</div-->
   	</form>
-
-
-
   	<div>
   		<ul>
   			<li ng-repeat="venue in venueList | limitTo:venueListLimit | orderBy:venue.location.distance">{{venue.name + ", " + venue.location.address + ", " + venue.location.distance + " meters"}}</li>
   		</ul>
-  	</div>
-  	
-
-  	
+  	</div>  	
   </body>
 </html>

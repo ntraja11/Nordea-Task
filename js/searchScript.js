@@ -11,12 +11,10 @@
             
             searchApp = angular.module(name, requires);
 
-            searchApp.factory("searchSVC", function($http, $q){
-                  
+            searchApp.factory("searchSVC", function($http, $q){                  
               return {                  
                   getVenues: function(){                                                                    
                         var deferred = $q.defer();
-
                         $http.get(url, config)
                             .success(function(data){                        
                               deferred.resolve(data);
@@ -35,14 +33,12 @@
                   $scope.searchKey = "";
                   $scope.venueListLimit;
 
-                  $scope.loadVenues = function(){                        
-                        
+                  $scope.loadVenues = function(){                         
                         searchSVC.getVenues().then(success, error);
 
                         function success(data){                          
                           $scope.venueList = data.response.venues;  
-                          $scope.venueListLimit =  $scope.venueList.length
-                          //console.log("Venue Loading Success - Total Venues : " + $scope.venueList.length);
+                          $scope.venueListLimit =  $scope.venueList.length                          
                           for(venue in $scope.venueList){
                               console.log("Venue Name :: " + $scope.venueList[venue].name + " Venue Distance :: " + $scope.venueList[venue].location.distance);
                           }           
@@ -52,8 +48,7 @@
                         }                 
                     }
 
-                  $scope.setConfig = function(){
-                        
+                  $scope.setConfig = function(){                        
                         if($scope.searchKey == ""){                              
                               config = {params:{ll:latlong}};
                         }else{
@@ -72,8 +67,7 @@
 
                   $scope.setPosition = function(position) {                        
                         locationData = position;
-                        latlong = locationData.coords.latitude + ',' + locationData.coords.longitude;
-                        //console.log("loading venues from service :: " + latlong);
+                        latlong = locationData.coords.latitude + ',' + locationData.coords.longitude;                        
                         $scope.setConfig();                        
                   }
 
@@ -83,5 +77,4 @@
                   $scope.getLocation();
             	
             });
-
 })();
