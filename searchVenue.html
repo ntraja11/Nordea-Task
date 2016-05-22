@@ -11,7 +11,9 @@
   <body ng-controller="SearchCtrl">
 
 
-  	<div id="details"></div>
+  	<form>
+  		Please enter a serch keyword : <input type="text" ng-change="setConfig()" ng-model="searchKey">
+  	</form>
 
   	
   </body>
