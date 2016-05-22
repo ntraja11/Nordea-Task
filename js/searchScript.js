@@ -32,15 +32,17 @@
             searchApp.controller("SearchCtrl", function($scope, $http, searchSVC){
 
                   $scope.venueList = [];         
-                  $scope.searchKey = "Public";
+                  $scope.searchKey = "";
+                  $scope.venueListLimit;
 
                   $scope.loadVenues = function(){                        
                         
                         searchSVC.getVenues().then(success, error);
 
                         function success(data){                          
-                          $scope.venueList = data.response.venues;   
-                          console.log("Venue Loading Success :: ");
+                          $scope.venueList = data.response.venues;  
+                          $scope.venueListLimit =  $scope.venueList.length
+                          //console.log("Venue Loading Success - Total Venues : " + $scope.venueList.length);
                           for(venue in $scope.venueList){
                               console.log("Venue Name :: " + $scope.venueList[venue].name + " Venue Distance :: " + $scope.venueList[venue].location.distance);
                           }           
@@ -59,13 +61,7 @@
                         }
                         $scope.loadVenues();                        
                   }
-
-                  $scope.getSearchKey = function(){
-                        console.log("Search Key is :: " + $scope.searchKey);
-                  }
                   
-                  
-
                   $scope.getLocation = function() {
                       if (navigator.geolocation) {
                           navigator.geolocation.getCurrentPosition($scope.setPosition, $scope.showError);                          
