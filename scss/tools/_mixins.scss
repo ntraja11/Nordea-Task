@@ -1,0 +1,21 @@
+
+
+@mixin fontSetup( $family: "sans-serif", $size : 15px, $line : 1.2, $color : #000, $weight: null, $transform: null ) {
+  font-family     : $family;
+  font-size       : $size;
+  line-height     : $line;
+  color           : $color;
+  font-weight     : $weight;
+  text-transform  : $transform;
+}
+
+@mixin font-face( $family, $file, $weight:"normal", $style:"normal" ) {
+  @font-face {
+    font-family: $family;
+    src: url("../fonts/" + $file + ".svg") format("svg"),
+         url("../fonts/" + $file + ".otf") format("opentype");
+    font-weight: #{$weight};
+    font-style: #{$style};
+  }
+}
+

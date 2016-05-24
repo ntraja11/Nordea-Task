@@ -1,5 +1,6 @@
 (function(){
 
+      //"use strict";
 	var name = "searchApp",
             requires = [],
             searchApp = null,
@@ -24,7 +25,7 @@
                             });
                             return deferred.promise;
                   }                         
-                }
+                };
             });
 
             searchApp.controller("SearchCtrl", function($scope, $http, searchSVC){
@@ -34,28 +35,22 @@
                   $scope.venueListLimit;
 
                   $scope.loadVenues = function(){                         
-                        searchSVC.getVenues().then(success, error);
-
-                        function success(data){                          
-                          $scope.venueList = data.response.venues;  
-                          $scope.venueListLimit =  $scope.venueList.length                          
-                          for(venue in $scope.venueList){
-                              console.log("Venue Name :: " + $scope.venueList[venue].name + " Venue Distance :: " + $scope.venueList[venue].location.distance);
-                          }           
-                        }
-                        function error(er){
-                          console.log("Venue Loading error : ", er);
-                        }                 
-                    }
+                        searchSVC.getVenues().then(function success(data){
+                              $scope.venueList = data.response.venues;  
+                              $scope.venueListLimit =  $scope.venueList.length;                                
+                        }, function error(er){
+                          console.log("Venue Loading error : ", er);    
+                        });
+                    };
 
                   $scope.setConfig = function(){                        
-                        if($scope.searchKey == ""){                              
+                        if($scope.searchKey === ""){                              
                               config = {params:{ll:latlong}};
                         }else{
                               config = {params:{ll:latlong, intent:"match", query:$scope.searchKey}};      
                         }
                         $scope.loadVenues();                        
-                  }
+                  };
                   
                   $scope.getLocation = function() {
                       if (navigator.geolocation) {
@@ -63,17 +58,17 @@
                       } else { 
                           console.log("Geolocation is not supported by this browser.");
                       }
-                  }
+                  };
 
                   $scope.setPosition = function(position) {                        
                         locationData = position;
-                        latlong = locationData.coords.latitude + ',' + locationData.coords.longitude;                        
+                        latlong = locationData.coords.latitude + "," + locationData.coords.longitude;                        
                         $scope.setConfig();                        
-                  }
+                  };
 
-                  $scope.showError = function(error) {
-                        console.log("location error");
-                  }
+                  $scope.showError = function(err) {
+                        console.log("location error" + err);
+                  };
                   $scope.getLocation();
             	
             });

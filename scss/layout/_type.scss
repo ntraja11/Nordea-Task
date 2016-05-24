@@ -1,0 +1,11 @@
+/* ==========================================================================
+   Type
+   ========================================================================== */
+
+/**
+ * Declare the mixin for including the web fonts
+ */
+
+/* fontSetup(fontFamily, fontSize, lineHeight, color, fontWeight, textTransform); */
+
+@include font-face( "Bold", "TradeGothicLTStd-Bold" );

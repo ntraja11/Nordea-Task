@@ -1,0 +1,26 @@
+
+
+# tmp files and other stuff
+*.patch
+*.diff
+*.orig
+*.rej
+interdiff*.txt
+
+# emacs artifacts.
+*~
+\#*\#
+
+# Hidden files.
+.DS*
+
+# Windows links.
+*.lnk
+
+# Temporary files.
+tmp*
+
+# project specific ignored files
+node_modules
+.sass-cache/
+*.map
