@@ -9,20 +9,24 @@
     <script src="js/searchScript.js"></script>       
   </head>
   <body ng-controller="SearchCtrl">
-  	<form>
-  		Please enter a serch keyword : <input type="text" ng-change="setConfig()" ng-model="searchKey">
+  	<form class="searchForm">
+  		Please enter a serch keyword : <input class="keyWord" type="text" ng-change="setConfig()" ng-model="searchKey">
   		<br/>
-  		<span ng-show="(venueList.length>5)">Choose a limit :</span>
-  		<div ng-show="(venueList.length>5)">
+  		<span ng-show="(photoObj.length>5)">Choose a limit :</span>
+  		<div class="venueCountOption" ng-show="(photoObj.length>5)">
 	  		<input type="radio" ng-model="venueListLimit" value="5">5		
 		</div>
-		<div ng-show="(venueList.length>10)">  		
-			<input type="radio" ng-model="venueListLimit" ng-show="(venueList.length>10)" value="10">10		
+		<div class="venueCountOption" ng-show="(photoObj.length>=10)">  		
+			<input type="radio" ng-model="venueListLimit" value="10">10
 		</div>
+		<div class="venueCountOption" ng-show="(photoObj.length>5)">  		
+			<input type="radio" ng-model="venueListLimit" value="{venueListLimit}">All
+		</div>
+
   	</form>
-  	<div>
+  	<div class="venueContainer">
   		<ul>
-  			<li ng-repeat="venue in venueList | limitTo:venueListLimit | orderBy:venue.location.distance">{{venue.name + ", " + venue.location.address + ", " + venue.location.distance + " meters"}}</li>
+  			<li class="venueItem" ng-repeat="venue in photoObj | limitTo:venueListLimit | orderBy:venue.location.distance"><img src="{{venue.imageUrl}}" alt="NoImage"><span>{{venue.name + ", " + venue.location.address + ", " + venue.location.distance + " meters"}}</span></li>
   		</ul>
   	</div>  	
   </body>
