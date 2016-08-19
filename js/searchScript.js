@@ -6,11 +6,12 @@
             searchApp = null,
             locationData,
             latlong,
+            vers = "20160816",
             authToken = "C5FTPYSYZX0G3M00TKQJCOP3CWBBIQP02YHBQKHIJ0JLD4RP",
             baseUrl = "https://api.foursquare.com/v2/venues/",
-            searchUrl = baseUrl + "search?client_id=xxxx&client_secret=zzzz&v=20160807&m=foursquare&oauth_token=" + authToken,            
+            searchUrl = baseUrl + "search?client_id=xxxx&client_secret=zzzz&v=" + vers + "&m=foursquare&oauth_token=" + authToken,            
             config,
-            photoUrl = "/photos?v=20160807&oauth_token=" + authToken
+            photoUrl = "/photos?v=" + vers + "&oauth_token=" + authToken
             ;
 
             searchApp = angular.module(name, requires);
@@ -46,7 +47,7 @@
 
                   $scope.venueList = [];         
                   $scope.searchKey = "";
-                  $scope.venueListLimit = 2;
+                  $scope.venueListLimit;
                   $scope.photoObj = [];
 
                   $scope.loadVenues = function(){                         
@@ -85,6 +86,7 @@
                         }else{
                               config = {params:{ll:latlong, intent:"match", query:$scope.searchKey}};      
                         }
+                        $scope.photoObj = [];
                         $scope.loadVenues();                        
                   };
                   
