@@ -14,6 +14,7 @@
   <body ng-controller="SearchCtrl">
   	<div ng-include="'myForm.html'"></div>
   	<div class="venueContainer">
+  		<h3>Selected Venues :</h3>
   		<ul>
   			<li class="venueItem" ng-repeat="venue in photoObj | limitTo:venueListLimit | orderBy:venue.location.distance"><img src="{{venue.imageUrl}}" alt="NoImage"><span>{{venue.name + ", " + venue.location.address + ", " + venue.location.distance + " meters"}}</span></li>
   		</ul>

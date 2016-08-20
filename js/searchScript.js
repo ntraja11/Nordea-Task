@@ -13,5 +13,3 @@
             ;
 
             searchApp = angular.module(name, requires);
-
-            
