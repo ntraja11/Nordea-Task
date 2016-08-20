@@ -1,0 +1,14 @@
+<form class="searchForm">
+  	Please enter a serch keyword : <input class="keyWord" type="text" ng-change="setConfig()" ng-model="searchKey">
+  	<br/>
+  	<span ng-show="(photoObj.length>5)">Choose a limit :</span>
+  	<div class="venueCountOption" ng-show="(photoObj.length>5)">
+		<input type="radio" ng-model="venueListLimit" value="5">5		
+	</div>
+	<div class="venueCountOption" ng-show="(photoObj.length>=10)">  		
+		<input type="radio" ng-model="venueListLimit" value="10">10
+	</div>
+	<div class="venueCountOption" ng-show="(photoObj.length>5)">  		
+		<input type="radio" ng-model="venueListLimit" value="{venueListLimit}">All
+	</div>
+</form>

@@ -7,24 +7,12 @@
 
     <link rel="stylesheet" href="css/common.css"></link>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>    
-    <script src="js/searchScript.js"></script>       
+    <script src="js/searchScript.js"></script>
+    <script src="js/searchFactory.js"></script>
+    <script src="js/searchController.js"></script>
   </head>
   <body ng-controller="SearchCtrl">
-  	<form class="searchForm">
-  		Please enter a serch keyword : <input class="keyWord" type="text" ng-change="setConfig()" ng-model="searchKey">
-  		<br/>
-  		<span ng-show="(photoObj.length>5)">Choose a limit :</span>
-  		<div class="venueCountOption" ng-show="(photoObj.length>5)">
-	  		<input type="radio" ng-model="venueListLimit" value="5">5		
-		</div>
-		<div class="venueCountOption" ng-show="(photoObj.length>=10)">  		
-			<input type="radio" ng-model="venueListLimit" value="10">10
-		</div>
-		<div class="venueCountOption" ng-show="(photoObj.length>5)">  		
-			<input type="radio" ng-model="venueListLimit" value="{venueListLimit}">All
-		</div>
-
-  	</form>
+  	<div ng-include="'myForm.html'"></div>
   	<div class="venueContainer">
   		<ul>
   			<li class="venueItem" ng-repeat="venue in photoObj | limitTo:venueListLimit | orderBy:venue.location.distance"><img src="{{venue.imageUrl}}" alt="NoImage"><span>{{venue.name + ", " + venue.location.address + ", " + venue.location.distance + " meters"}}</span></li>
